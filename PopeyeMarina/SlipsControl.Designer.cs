@@ -44,258 +44,280 @@ namespace PopeyeMarina.Screens
 
         private void InitializeComponent()
         {
-            this.headerLabel = new System.Windows.Forms.Label();
-            this.formCardPanel = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.txtDoorType = new System.Windows.Forms.TextBox();
-            this.doorTypeLabel = new System.Windows.Forms.Label();
-            this.txtHeight = new System.Windows.Forms.TextBox();
-            this.heightLabel = new System.Windows.Forms.Label();
-            this.chkCovered = new System.Windows.Forms.CheckBox();
-            this.cmbDock = new System.Windows.Forms.ComboBox();
-            this.dockLabel = new System.Windows.Forms.Label();
-            this.txtLength = new System.Windows.Forms.TextBox();
-            this.lengthLabel = new System.Windows.Forms.Label();
-            this.txtWidth = new System.Windows.Forms.TextBox();
-            this.widthLabel = new System.Windows.Forms.Label();
-            this.cardTitleLabel = new System.Windows.Forms.Label();
-            this.dgvSlips = new System.Windows.Forms.DataGridView();
-            this.colSlipID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWidth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCovered = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.formCardPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSlips)).BeginInit();
-            this.SuspendLayout();
-            //
+            headerLabel = new Label();
+            formCardPanel = new Panel();
+            btnCancel = new Button();
+            btnSave = new Button();
+            txtDoorType = new TextBox();
+            doorTypeLabel = new Label();
+            txtHeight = new TextBox();
+            heightLabel = new Label();
+            chkCovered = new CheckBox();
+            cmbDock = new ComboBox();
+            dockLabel = new Label();
+            txtLength = new TextBox();
+            lengthLabel = new Label();
+            txtWidth = new TextBox();
+            widthLabel = new Label();
+            cardTitleLabel = new Label();
+            dgvSlips = new DataGridView();
+            colSlipID = new DataGridViewTextBoxColumn();
+            colDock = new DataGridViewTextBoxColumn();
+            colWidth = new DataGridViewTextBoxColumn();
+            colLength = new DataGridViewTextBoxColumn();
+            colCovered = new DataGridViewTextBoxColumn();
+            formCardPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvSlips).BeginInit();
+            SuspendLayout();
+            // 
             // headerLabel
-            //
-            this.headerLabel.AutoSize = true;
-            this.headerLabel.Font = Theme.ScreenHeaderFont;
-            this.headerLabel.ForeColor = Theme.PrimaryTextColor;
-            this.headerLabel.Location = new System.Drawing.Point(0, 0);
-            this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Text = "Slips";
-            //
+            // 
+            headerLabel.AutoSize = true;
+            headerLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            headerLabel.ForeColor = Color.FromArgb(20, 20, 20);
+            headerLabel.Location = new Point(0, 0);
+            headerLabel.Name = "headerLabel";
+            headerLabel.Size = new Size(67, 32);
+            headerLabel.TabIndex = 2;
+            headerLabel.Text = "Slips";
+            // 
             // formCardPanel
-            //
-            this.formCardPanel.BackColor = Theme.CardBackColor;
-            this.formCardPanel.BorderStyle = Theme.CardBorderStyle;
-            this.formCardPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.formCardPanel.Location = new System.Drawing.Point(0, 44);
-            this.formCardPanel.Size = new System.Drawing.Size(820, 230);
-            this.formCardPanel.Controls.Add(this.btnCancel);
-            this.formCardPanel.Controls.Add(this.btnSave);
-            this.formCardPanel.Controls.Add(this.txtDoorType);
-            this.formCardPanel.Controls.Add(this.doorTypeLabel);
-            this.formCardPanel.Controls.Add(this.txtHeight);
-            this.formCardPanel.Controls.Add(this.heightLabel);
-            this.formCardPanel.Controls.Add(this.chkCovered);
-            this.formCardPanel.Controls.Add(this.cmbDock);
-            this.formCardPanel.Controls.Add(this.dockLabel);
-            this.formCardPanel.Controls.Add(this.txtLength);
-            this.formCardPanel.Controls.Add(this.lengthLabel);
-            this.formCardPanel.Controls.Add(this.txtWidth);
-            this.formCardPanel.Controls.Add(this.widthLabel);
-            this.formCardPanel.Controls.Add(this.cardTitleLabel);
-            this.formCardPanel.Name = "formCardPanel";
-            //
-            // cardTitleLabel
-            //
-            this.cardTitleLabel.AutoSize = true;
-            this.cardTitleLabel.Font = Theme.CardTitleFont;
-            this.cardTitleLabel.ForeColor = Theme.PrimaryTextColor;
-            this.cardTitleLabel.Location = new System.Drawing.Point(16, 12);
-            this.cardTitleLabel.Name = "cardTitleLabel";
-            this.cardTitleLabel.Text = "Add new slip";
-            //
-            // widthLabel
-            //
-            this.widthLabel.AutoSize = true;
-            this.widthLabel.Font = Theme.FieldLabelFont;
-            this.widthLabel.ForeColor = Theme.SecondaryTextColor;
-            this.widthLabel.Location = new System.Drawing.Point(16, 46);
-            this.widthLabel.Name = "widthLabel";
-            this.widthLabel.Text = "Width (m)";
-            //
-            // txtWidth
-            //
-            this.txtWidth.Font = Theme.InputFont;
-            this.txtWidth.Location = new System.Drawing.Point(16, 64);
-            this.txtWidth.Size = new System.Drawing.Size(100, 25);
-            this.txtWidth.Name = "txtWidth";
-            //
-            // lengthLabel
-            //
-            this.lengthLabel.AutoSize = true;
-            this.lengthLabel.Font = Theme.FieldLabelFont;
-            this.lengthLabel.ForeColor = Theme.SecondaryTextColor;
-            this.lengthLabel.Location = new System.Drawing.Point(132, 46);
-            this.lengthLabel.Name = "lengthLabel";
-            this.lengthLabel.Text = "Length (m)";
-            //
-            // txtLength
-            //
-            this.txtLength.Font = Theme.InputFont;
-            this.txtLength.Location = new System.Drawing.Point(132, 64);
-            this.txtLength.Size = new System.Drawing.Size(100, 25);
-            this.txtLength.Name = "txtLength";
-            //
-            // dockLabel
-            //
-            this.dockLabel.AutoSize = true;
-            this.dockLabel.Font = Theme.FieldLabelFont;
-            this.dockLabel.ForeColor = Theme.SecondaryTextColor;
-            this.dockLabel.Location = new System.Drawing.Point(248, 46);
-            this.dockLabel.Name = "dockLabel";
-            this.dockLabel.Text = "Dock";
-            //
-            // cmbDock
-            //
-            this.cmbDock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDock.Font = Theme.InputFont;
-            this.cmbDock.Location = new System.Drawing.Point(248, 64);
-            this.cmbDock.Size = new System.Drawing.Size(220, 25);
-            this.cmbDock.Name = "cmbDock";
-            //
-            // chkCovered
-            //
-            this.chkCovered.AutoSize = true;
-            this.chkCovered.Font = Theme.InputFont;
-            this.chkCovered.ForeColor = Theme.PrimaryTextColor;
-            this.chkCovered.Location = new System.Drawing.Point(16, 118);
-            this.chkCovered.Name = "chkCovered";
-            this.chkCovered.Text = "Covered slip";
-            this.chkCovered.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chkCovered.CheckedChanged += new System.EventHandler(this.chkCovered_CheckedChanged);
-            //
-            // heightLabel
-            //
-            this.heightLabel.AutoSize = true;
-            this.heightLabel.Font = Theme.FieldLabelFont;
-            this.heightLabel.ForeColor = Theme.SecondaryTextColor;
-            this.heightLabel.Location = new System.Drawing.Point(150, 118);
-            this.heightLabel.Name = "heightLabel";
-            this.heightLabel.Text = "Height (m)";
-            //
-            // txtHeight
-            //
-            this.txtHeight.Font = Theme.InputFont;
-            this.txtHeight.Location = new System.Drawing.Point(150, 136);
-            this.txtHeight.Size = new System.Drawing.Size(100, 25);
-            this.txtHeight.Name = "txtHeight";
-            //
-            // doorTypeLabel
-            //
-            this.doorTypeLabel.AutoSize = true;
-            this.doorTypeLabel.Font = Theme.FieldLabelFont;
-            this.doorTypeLabel.ForeColor = Theme.SecondaryTextColor;
-            this.doorTypeLabel.Location = new System.Drawing.Point(266, 118);
-            this.doorTypeLabel.Name = "doorTypeLabel";
-            this.doorTypeLabel.Text = "Door type";
-            //
-            // txtDoorType
-            //
-            this.txtDoorType.Font = Theme.InputFont;
-            this.txtDoorType.Location = new System.Drawing.Point(266, 136);
-            this.txtDoorType.Size = new System.Drawing.Size(200, 25);
-            this.txtDoorType.Name = "txtDoorType";
-            //
-            // btnSave
-            //
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.BackColor = Theme.PrimaryButtonBackColor;
-            this.btnSave.ForeColor = Theme.PrimaryButtonForeColor;
-            this.btnSave.Font = Theme.ButtonFont;
-            this.btnSave.Location = new System.Drawing.Point(16, 184);
-            this.btnSave.Size = new System.Drawing.Size(140, 34);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Text = "Add Slip";
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            //
+            // 
+            formCardPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            formCardPanel.BackColor = Color.White;
+            formCardPanel.BorderStyle = BorderStyle.FixedSingle;
+            formCardPanel.Controls.Add(btnCancel);
+            formCardPanel.Controls.Add(btnSave);
+            formCardPanel.Controls.Add(txtDoorType);
+            formCardPanel.Controls.Add(doorTypeLabel);
+            formCardPanel.Controls.Add(txtHeight);
+            formCardPanel.Controls.Add(heightLabel);
+            formCardPanel.Controls.Add(chkCovered);
+            formCardPanel.Controls.Add(cmbDock);
+            formCardPanel.Controls.Add(dockLabel);
+            formCardPanel.Controls.Add(txtLength);
+            formCardPanel.Controls.Add(lengthLabel);
+            formCardPanel.Controls.Add(txtWidth);
+            formCardPanel.Controls.Add(widthLabel);
+            formCardPanel.Controls.Add(cardTitleLabel);
+            formCardPanel.Location = new Point(0, 44);
+            formCardPanel.Name = "formCardPanel";
+            formCardPanel.Size = new Size(738, 230);
+            formCardPanel.TabIndex = 1;
+            // 
             // btnCancel
-            //
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.FlatAppearance.BorderSize = 1;
-            this.btnCancel.BackColor = Theme.CardBackColor;
-            this.btnCancel.ForeColor = Theme.SecondaryTextColor;
-            this.btnCancel.Font = Theme.ButtonFont;
-            this.btnCancel.Location = new System.Drawing.Point(164, 184);
-            this.btnCancel.Size = new System.Drawing.Size(100, 34);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.Visible = false;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            //
+            // 
+            btnCancel.BackColor = Color.White;
+            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnCancel.ForeColor = Color.FromArgb(100, 100, 100);
+            btnCancel.Location = new Point(164, 184);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(100, 34);
+            btnCancel.TabIndex = 0;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Visible = false;
+            btnCancel.Click += btnCancel_Click;
+            // 
+            // btnSave
+            // 
+            btnSave.BackColor = Color.FromArgb(12, 34, 51);
+            btnSave.Cursor = Cursors.Hand;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(16, 184);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(140, 34);
+            btnSave.TabIndex = 1;
+            btnSave.Text = "Add Slip";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
+            // 
+            // txtDoorType
+            // 
+            txtDoorType.Font = new Font("Segoe UI", 10F);
+            txtDoorType.Location = new Point(266, 136);
+            txtDoorType.Name = "txtDoorType";
+            txtDoorType.Size = new Size(200, 25);
+            txtDoorType.TabIndex = 2;
+            // 
+            // doorTypeLabel
+            // 
+            doorTypeLabel.AutoSize = true;
+            doorTypeLabel.Font = new Font("Segoe UI", 8.5F);
+            doorTypeLabel.ForeColor = Color.FromArgb(100, 100, 100);
+            doorTypeLabel.Location = new Point(266, 118);
+            doorTypeLabel.Name = "doorTypeLabel";
+            doorTypeLabel.Size = new Size(59, 15);
+            doorTypeLabel.TabIndex = 3;
+            doorTypeLabel.Text = "Door type";
+            // 
+            // txtHeight
+            // 
+            txtHeight.Font = new Font("Segoe UI", 10F);
+            txtHeight.Location = new Point(150, 136);
+            txtHeight.Name = "txtHeight";
+            txtHeight.Size = new Size(100, 25);
+            txtHeight.TabIndex = 4;
+            // 
+            // heightLabel
+            // 
+            heightLabel.AutoSize = true;
+            heightLabel.Font = new Font("Segoe UI", 8.5F);
+            heightLabel.ForeColor = Color.FromArgb(100, 100, 100);
+            heightLabel.Location = new Point(150, 118);
+            heightLabel.Name = "heightLabel";
+            heightLabel.Size = new Size(65, 15);
+            heightLabel.TabIndex = 5;
+            heightLabel.Text = "Height (m)";
+            // 
+            // chkCovered
+            // 
+            chkCovered.AutoSize = true;
+            chkCovered.Cursor = Cursors.Hand;
+            chkCovered.Font = new Font("Segoe UI", 10F);
+            chkCovered.ForeColor = Color.FromArgb(20, 20, 20);
+            chkCovered.Location = new Point(16, 118);
+            chkCovered.Name = "chkCovered";
+            chkCovered.Size = new Size(103, 23);
+            chkCovered.TabIndex = 6;
+            chkCovered.Text = "Covered slip";
+            chkCovered.CheckedChanged += chkCovered_CheckedChanged;
+            // 
+            // cmbDock
+            // 
+            cmbDock.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDock.Font = new Font("Segoe UI", 10F);
+            cmbDock.Location = new Point(248, 64);
+            cmbDock.Name = "cmbDock";
+            cmbDock.Size = new Size(220, 25);
+            cmbDock.TabIndex = 7;
+            // 
+            // dockLabel
+            // 
+            dockLabel.AutoSize = true;
+            dockLabel.Font = new Font("Segoe UI", 8.5F);
+            dockLabel.ForeColor = Color.FromArgb(100, 100, 100);
+            dockLabel.Location = new Point(248, 46);
+            dockLabel.Name = "dockLabel";
+            dockLabel.Size = new Size(34, 15);
+            dockLabel.TabIndex = 8;
+            dockLabel.Text = "Dock";
+            // 
+            // txtLength
+            // 
+            txtLength.Font = new Font("Segoe UI", 10F);
+            txtLength.Location = new Point(132, 64);
+            txtLength.Name = "txtLength";
+            txtLength.Size = new Size(100, 25);
+            txtLength.TabIndex = 9;
+            // 
+            // lengthLabel
+            // 
+            lengthLabel.AutoSize = true;
+            lengthLabel.Font = new Font("Segoe UI", 8.5F);
+            lengthLabel.ForeColor = Color.FromArgb(100, 100, 100);
+            lengthLabel.Location = new Point(132, 46);
+            lengthLabel.Name = "lengthLabel";
+            lengthLabel.Size = new Size(66, 15);
+            lengthLabel.TabIndex = 10;
+            lengthLabel.Text = "Length (m)";
+            // 
+            // txtWidth
+            // 
+            txtWidth.Font = new Font("Segoe UI", 10F);
+            txtWidth.Location = new Point(16, 64);
+            txtWidth.Name = "txtWidth";
+            txtWidth.Size = new Size(100, 25);
+            txtWidth.TabIndex = 11;
+            // 
+            // widthLabel
+            // 
+            widthLabel.AutoSize = true;
+            widthLabel.Font = new Font("Segoe UI", 8.5F);
+            widthLabel.ForeColor = Color.FromArgb(100, 100, 100);
+            widthLabel.Location = new Point(16, 46);
+            widthLabel.Name = "widthLabel";
+            widthLabel.Size = new Size(61, 15);
+            widthLabel.TabIndex = 12;
+            widthLabel.Text = "Width (m)";
+            // 
+            // cardTitleLabel
+            // 
+            cardTitleLabel.AutoSize = true;
+            cardTitleLabel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            cardTitleLabel.ForeColor = Color.FromArgb(20, 20, 20);
+            cardTitleLabel.Location = new Point(16, 12);
+            cardTitleLabel.Name = "cardTitleLabel";
+            cardTitleLabel.Size = new Size(99, 20);
+            cardTitleLabel.TabIndex = 13;
+            cardTitleLabel.Text = "Add new slip";
+            // 
             // dgvSlips
-            //
-            this.dgvSlips.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvSlips.Location = new System.Drawing.Point(0, 284);
-            this.dgvSlips.Size = new System.Drawing.Size(820, 300);
-            this.dgvSlips.AllowUserToAddRows = false;
-            this.dgvSlips.AllowUserToDeleteRows = false;
-            this.dgvSlips.ReadOnly = true;
-            this.dgvSlips.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSlips.MultiSelect = false;
-            this.dgvSlips.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvSlips.BackgroundColor = Theme.ContentBackColor;
-            this.dgvSlips.BorderStyle = Theme.CardBorderStyle;
-            this.dgvSlips.RowHeadersVisible = false;
-            this.dgvSlips.Name = "dgvSlips";
-            this.dgvSlips.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colSlipID,
-            this.colDock,
-            this.colWidth,
-            this.colLength,
-            this.colCovered});
-            this.dgvSlips.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSlips_CellClick);
-            //
+            // 
+            dgvSlips.AllowUserToAddRows = false;
+            dgvSlips.AllowUserToDeleteRows = false;
+            dgvSlips.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvSlips.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSlips.BackgroundColor = Color.White;
+            dgvSlips.Columns.AddRange(new DataGridViewColumn[] { colSlipID, colDock, colWidth, colLength, colCovered });
+            dgvSlips.Location = new Point(0, 284);
+            dgvSlips.MultiSelect = false;
+            dgvSlips.Name = "dgvSlips";
+            dgvSlips.ReadOnly = true;
+            dgvSlips.RowHeadersVisible = false;
+            dgvSlips.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSlips.Size = new Size(738, 361);
+            dgvSlips.TabIndex = 0;
+            dgvSlips.CellClick += dgvSlips_CellClick;
+            // 
             // colSlipID
-            //
-            this.colSlipID.HeaderText = "ID";
-            this.colSlipID.Name = "colSlipID";
-            this.colSlipID.Visible = false;
-            //
+            // 
+            colSlipID.HeaderText = "ID";
+            colSlipID.Name = "colSlipID";
+            colSlipID.ReadOnly = true;
+            colSlipID.Visible = false;
+            // 
             // colDock
-            //
-            this.colDock.HeaderText = "Dock";
-            this.colDock.Name = "colDock";
-            //
+            // 
+            colDock.HeaderText = "Dock";
+            colDock.Name = "colDock";
+            colDock.ReadOnly = true;
+            // 
             // colWidth
-            //
-            this.colWidth.HeaderText = "Width (m)";
-            this.colWidth.Name = "colWidth";
-            //
+            // 
+            colWidth.HeaderText = "Width (m)";
+            colWidth.Name = "colWidth";
+            colWidth.ReadOnly = true;
+            // 
             // colLength
-            //
-            this.colLength.HeaderText = "Length (m)";
-            this.colLength.Name = "colLength";
-            //
+            // 
+            colLength.HeaderText = "Length (m)";
+            colLength.Name = "colLength";
+            colLength.ReadOnly = true;
+            // 
             // colCovered
-            //
-            this.colCovered.HeaderText = "Covered";
-            this.colCovered.Name = "colCovered";
-            //
+            // 
+            colCovered.HeaderText = "Covered";
+            colCovered.Name = "colCovered";
+            colCovered.ReadOnly = true;
+            // 
             // SlipsControl
-            //
-            this.Controls.Add(this.dgvSlips);
-            this.Controls.Add(this.formCardPanel);
-            this.Controls.Add(this.headerLabel);
-            this.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Name = "SlipsControl";
-            this.Size = new System.Drawing.Size(820, 650);
-            this.formCardPanel.ResumeLayout(false);
-            this.formCardPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSlips)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            Controls.Add(dgvSlips);
+            Controls.Add(formCardPanel);
+            Controls.Add(headerLabel);
+            Name = "SlipsControl";
+            Size = new Size(738, 711);
+            formCardPanel.ResumeLayout(false);
+            formCardPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvSlips).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

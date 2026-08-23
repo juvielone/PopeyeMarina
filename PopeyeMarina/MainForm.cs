@@ -13,8 +13,8 @@ namespace PopeyeMarina
         {
             InitializeComponent();
 
-            // Default to the Leases section on load
-            SelectNav(btnLeases);
+            // Dashboard is now the default landing view (was Leases)
+            SelectNav(btnDashboard);
         }
 
         private void NavButton_Click(object sender, System.EventArgs e)
@@ -43,11 +43,17 @@ namespace PopeyeMarina
             LoadSectionPlaceholder(sectionName);
         }
 
-        // Sections without a built screen yet (Slips, Leases, Records) still
-        // fall through to the placeholder below until their own milestones.
+        // Sections without a built screen yet (Slips) still fall through to the
+        // placeholder below until their own milestones.
         private void LoadSectionPlaceholder(string sectionName)
         {
             contentPanel.Controls.Clear();
+
+            if (sectionName == "Dashboard")
+            {
+                contentPanel.Controls.Add(new DashboardControl());
+                return;
+            }
 
             if (sectionName == "Leases")
             {
@@ -70,6 +76,12 @@ namespace PopeyeMarina
             if (sectionName == "Records")
             {
                 contentPanel.Controls.Add(new RecordsControl());
+                return;
+            }
+
+            if (sectionName == "Boat Hire")
+            {
+                contentPanel.Controls.Add(new BoatHireControl());
                 return;
             }
 

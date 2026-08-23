@@ -243,6 +243,81 @@ namespace PopeyeMarina.Data
             return leases;
         }
 
+        // All leases across all customers. Used by the Dashboard's unified
+        // activity view. Same read logic as GetLeasesByCustomer, including the
+        // null-safe EndDate handling for daily leases with no recorded end date.
+        public static List<Lease> GetAllLeases()
+        {
+            List<Lease> leases = new List<Lease>();
+
+            try
+            {
+                using (SqlConnection connection = DatabaseHelper.GetConnection())
+                {
+                    connection.Open();
+
+                    string sql = "SELECT * FROM Lease";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string leaseType = reader.GetString(
+                                reader.GetOrdinal("LeaseType"));
+
+                            Lease lease;
+
+                            if (leaseType == "Annual")
+                            {
+                                lease = new AnnualLease();
+                            }
+                            else
+                            {
+                                lease = new DailyLease();
+                            }
+
+                            lease.LeaseID = reader.GetInt32(
+                                reader.GetOrdinal("LeaseID"));
+
+                            lease.StartDate = reader.GetDateTime(
+                                reader.GetOrdinal("StartDate"));
+
+                            int endDateOrdinal = reader.GetOrdinal("EndDate");
+
+                            lease.EndDate = reader.IsDBNull(endDateOrdinal)
+                                ? null
+                                : reader.GetDateTime(endDateOrdinal);
+
+                            lease.Amount = reader.GetDecimal(
+                                reader.GetOrdinal("Amount"));
+
+                            lease.LeaseType = leaseType;
+
+                            lease.SlipID = reader.GetInt32(
+                                reader.GetOrdinal("SlipID"));
+
+                            lease.StateRegoNo = reader.GetString(
+                                reader.GetOrdinal("StateRegoNo"));
+
+                            lease.CustomerID = reader.GetInt32(
+                                reader.GetOrdinal("CustomerID"));
+
+                            leases.Add(lease);
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(
+                    "Unable to retrieve leases.",
+                    ex);
+            }
+
+            return leases;
+        }
+
         public static void DeleteLease(int leaseId)
         {
             using (SqlConnection connection = DatabaseHelper.GetConnection())

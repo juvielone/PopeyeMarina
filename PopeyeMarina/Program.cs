@@ -12,7 +12,9 @@ namespace PopeyeMarina
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new Form1());
+            //Application.Run(new MainForm());
             Application.Run(new MainForm());
+            //Application.Run(new BoatHireTestForm());
         }
     }
 }

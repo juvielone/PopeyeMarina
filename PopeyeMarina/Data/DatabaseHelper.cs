@@ -10,7 +10,7 @@ namespace PopeyeMarina.Data
     public static class DatabaseHelper
     {
         private const string ConnectionString =
-            @"Server=DESKTOP-AK2FHA4\MSSQLSERVER01;Database=PopeyeMarinaDB;Integrated Security=True;TrustServerCertificate=True;";
+            @"Server=localhost\SQLEXPRESS;Database=PopeyeMarinaDB;Integrated Security=True;TrustServerCertificate=True;";
 
         public static SqlConnection GetConnection()
         {
