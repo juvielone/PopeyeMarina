@@ -94,8 +94,21 @@ namespace PopeyeMarina.Screens
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Font = Theme.InputFont,
                 Location = new Point(16, 172),
-                Size = new Size(578, 25)
+                Size = new Size(478, 25)
             };
+
+            Button btnAddBoat = new Button
+            {
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(240, 241, 242),
+                ForeColor = Theme.SecondaryTextColor,
+                Font = Theme.ButtonFont,
+                Location = new Point(500, 171),
+                Size = new Size(94, 27),
+                Text = "+ Add Boat",
+                Cursor = Cursors.Hand
+            };
+            btnAddBoat.FlatAppearance.BorderSize = 0;
 
             void UpdateDuration()
             {
@@ -158,10 +171,21 @@ namespace PopeyeMarina.Screens
             dtpEnd.ValueChanged += (s, e) => RefreshAvailableBoats();
             RefreshAvailableBoats();
 
+            btnAddBoat.Click += (s, e) =>
+            {
+                using (AddRentalBoatForm addForm = new AddRentalBoatForm())
+                {
+                    if (addForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        RefreshAvailableBoats();
+                    }
+                }
+            };
+
             card.Controls.AddRange(new Control[]
             {
                 title, customerLabel, cmbCustomer, startLabel, dtpStart, endLabel, dtpEnd,
-                durationValue, boatLabel, cmbBoat
+                durationValue, boatLabel, cmbBoat, btnAddBoat
             });
 
             Button btnCreate = MakePrimaryButton("Create Hire", 16, 250);

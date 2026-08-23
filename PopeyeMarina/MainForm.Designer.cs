@@ -17,7 +17,6 @@ namespace PopeyeMarina
 
         private System.Windows.Forms.Panel sidebarPanel;
         private System.Windows.Forms.Label logoLabel;
-        private System.Windows.Forms.Label subtitleLabel;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnLeases;
         private System.Windows.Forms.Button btnSlips;
@@ -28,176 +27,225 @@ namespace PopeyeMarina
 
         private void InitializeComponent()
         {
-            this.sidebarPanel = new System.Windows.Forms.Panel();
-            this.logoLabel = new System.Windows.Forms.Label();
-            this.subtitleLabel = new System.Windows.Forms.Label();
-            this.btnDashboard = new System.Windows.Forms.Button();
-            this.btnLeases = new System.Windows.Forms.Button();
-            this.btnSlips = new System.Windows.Forms.Button();
-            this.btnCustomers = new System.Windows.Forms.Button();
-            this.btnRecords = new System.Windows.Forms.Button();
-            this.btnBoatHire = new System.Windows.Forms.Button();
-            this.contentPanel = new System.Windows.Forms.Panel();
-            this.sidebarPanel.SuspendLayout();
-            this.SuspendLayout();
-            //
+            sidebarPanel = new Panel();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            logoLabel = new Label();
+            btnDashboard = new Button();
+            btnCustomers = new Button();
+            btnBoatHire = new Button();
+            btnRecords = new Button();
+            btnSlips = new Button();
+            btnLeases = new Button();
+            contentPanel = new Panel();
+            sidebarPanel.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
+            // 
             // sidebarPanel
-            //
-            this.sidebarPanel.BackColor = Theme.SidebarColor;
-            this.sidebarPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidebarPanel.Width = Theme.SidebarWidth;
-            this.sidebarPanel.Controls.Add(this.btnBoatHire);
-            this.sidebarPanel.Controls.Add(this.btnRecords);
-            this.sidebarPanel.Controls.Add(this.btnCustomers);
-            this.sidebarPanel.Controls.Add(this.btnSlips);
-            this.sidebarPanel.Controls.Add(this.btnLeases);
-            this.sidebarPanel.Controls.Add(this.btnDashboard);
-            this.sidebarPanel.Controls.Add(this.subtitleLabel);
-            this.sidebarPanel.Controls.Add(this.logoLabel);
-            this.sidebarPanel.Name = "sidebarPanel";
-            //
+            // 
+            sidebarPanel.BackColor = Color.FromArgb(12, 34, 51);
+            sidebarPanel.Controls.Add(tableLayoutPanel1);
+            sidebarPanel.Dock = DockStyle.Left;
+            sidebarPanel.Location = new Point(0, 0);
+            sidebarPanel.Name = "sidebarPanel";
+            sidebarPanel.Size = new Size(220, 650);
+            sidebarPanel.TabIndex = 1;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(logoLabel, 0, 0);
+            tableLayoutPanel1.Controls.Add(btnDashboard, 0, 1);
+            tableLayoutPanel1.Controls.Add(btnCustomers, 0, 2);
+            tableLayoutPanel1.Controls.Add(btnBoatHire, 0, 3);
+            tableLayoutPanel1.Controls.Add(btnRecords, 0, 4);
+            tableLayoutPanel1.Controls.Add(btnSlips, 0, 5);
+            tableLayoutPanel1.Controls.Add(btnLeases, 0, 6);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 8;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.1676636F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.9760466F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.9760466F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.9760466F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.9760466F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.9760466F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.9760466F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 11.9760466F));
+            tableLayoutPanel1.Size = new Size(220, 650);
+            tableLayoutPanel1.TabIndex = 8;
+            // 
             // logoLabel
-            //
-            this.logoLabel.AutoSize = true;
-            this.logoLabel.BackColor = System.Drawing.Color.Transparent;
-            this.logoLabel.ForeColor = Theme.AccentColor;
-            this.logoLabel.Font = Theme.LogoFont;
-            this.logoLabel.Location = new System.Drawing.Point(20, 24);
-            this.logoLabel.Name = "logoLabel";
-            this.logoLabel.Text = "Popeye Marina";
-            //
-            // subtitleLabel
-            //
-            this.subtitleLabel.AutoSize = true;
-            this.subtitleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.subtitleLabel.ForeColor = Theme.MutedTextColor;
-            this.subtitleLabel.Font = Theme.SubtitleFont;
-            this.subtitleLabel.Location = new System.Drawing.Point(20, 58);
-            this.subtitleLabel.Name = "subtitleLabel";
-            this.subtitleLabel.Text = "Harbor master admin";
-            //
+            // 
+            logoLabel.AutoSize = true;
+            logoLabel.BackColor = Color.Transparent;
+            logoLabel.Dock = DockStyle.Fill;
+            logoLabel.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            logoLabel.ForeColor = Color.FromArgb(93, 202, 165);
+            logoLabel.Image = Properties.Resources.Icon;
+            logoLabel.ImageAlign = ContentAlignment.MiddleLeft;
+            logoLabel.Location = new Point(3, 0);
+            logoLabel.Name = "logoLabel";
+            logoLabel.Padding = new Padding(10, 0, 0, 0);
+            logoLabel.Size = new Size(214, 105);
+            logoLabel.TabIndex = 7;
+            logoLabel.Text = "Popeye Marina";
+            logoLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // btnDashboard
-            //
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.BackColor = Theme.SidebarColor;
-            this.btnDashboard.ForeColor = System.Drawing.Color.White;
-            this.btnDashboard.Font = Theme.NavFont(selected: false);
-            this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDashboard.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnDashboard.Location = new System.Drawing.Point(0, 110);
-            this.btnDashboard.Size = new System.Drawing.Size(Theme.SidebarWidth, Theme.NavButtonHeight);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Text = "Dashboard";
-            this.btnDashboard.Tag = "Dashboard";
-            this.btnDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDashboard.Click += new System.EventHandler(this.NavButton_Click);
-            //
-            // btnLeases
-            //
-            this.btnLeases.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLeases.FlatAppearance.BorderSize = 0;
-            this.btnLeases.BackColor = Theme.SidebarColor;
-            this.btnLeases.ForeColor = Theme.MutedTextColor;
-            this.btnLeases.Font = Theme.NavFont(selected: false);
-            this.btnLeases.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLeases.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnLeases.Location = new System.Drawing.Point(0, 110 + Theme.NavButtonHeight);
-            this.btnLeases.Size = new System.Drawing.Size(Theme.SidebarWidth, Theme.NavButtonHeight);
-            this.btnLeases.Name = "btnLeases";
-            this.btnLeases.Text = "Leases";
-            this.btnLeases.Tag = "Leases";
-            this.btnLeases.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLeases.Click += new System.EventHandler(this.NavButton_Click);
-            //
-            // btnSlips
-            //
-            this.btnSlips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSlips.FlatAppearance.BorderSize = 0;
-            this.btnSlips.BackColor = Theme.SidebarColor;
-            this.btnSlips.ForeColor = Theme.MutedTextColor;
-            this.btnSlips.Font = Theme.NavFont(selected: false);
-            this.btnSlips.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSlips.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnSlips.Location = new System.Drawing.Point(0, 110 + (Theme.NavButtonHeight * 2));
-            this.btnSlips.Size = new System.Drawing.Size(Theme.SidebarWidth, Theme.NavButtonHeight);
-            this.btnSlips.Name = "btnSlips";
-            this.btnSlips.Text = "Slips";
-            this.btnSlips.Tag = "Slips";
-            this.btnSlips.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSlips.Click += new System.EventHandler(this.NavButton_Click);
-            //
+            // 
+            btnDashboard.BackColor = Color.FromArgb(12, 34, 51);
+            btnDashboard.Cursor = Cursors.Hand;
+            btnDashboard.Dock = DockStyle.Fill;
+            btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Segoe UI", 10F);
+            btnDashboard.ForeColor = Color.White;
+            btnDashboard.Image = Properties.Resources.home;
+            btnDashboard.Location = new Point(3, 108);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Padding = new Padding(20, 0, 0, 0);
+            btnDashboard.Size = new Size(214, 71);
+            btnDashboard.TabIndex = 5;
+            btnDashboard.Tag = "Dashboard";
+            btnDashboard.Text = "Dashboard";
+            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.UseVisualStyleBackColor = false;
+            btnDashboard.Click += NavButton_Click;
+            // 
             // btnCustomers
-            //
-            this.btnCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCustomers.FlatAppearance.BorderSize = 0;
-            this.btnCustomers.BackColor = Theme.SidebarColor;
-            this.btnCustomers.ForeColor = Theme.MutedTextColor;
-            this.btnCustomers.Font = Theme.NavFont(selected: false);
-            this.btnCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCustomers.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnCustomers.Location = new System.Drawing.Point(0, 110 + (Theme.NavButtonHeight * 3));
-            this.btnCustomers.Size = new System.Drawing.Size(Theme.SidebarWidth, Theme.NavButtonHeight);
-            this.btnCustomers.Name = "btnCustomers";
-            this.btnCustomers.Text = "Customers";
-            this.btnCustomers.Tag = "Customers";
-            this.btnCustomers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCustomers.Click += new System.EventHandler(this.NavButton_Click);
-            //
-            // btnRecords
-            //
-            this.btnRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRecords.FlatAppearance.BorderSize = 0;
-            this.btnRecords.BackColor = Theme.SidebarColor;
-            this.btnRecords.ForeColor = Theme.MutedTextColor;
-            this.btnRecords.Font = Theme.NavFont(selected: false);
-            this.btnRecords.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecords.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnRecords.Location = new System.Drawing.Point(0, 110 + (Theme.NavButtonHeight * 4));
-            this.btnRecords.Size = new System.Drawing.Size(Theme.SidebarWidth, Theme.NavButtonHeight);
-            this.btnRecords.Name = "btnRecords";
-            this.btnRecords.Text = "Records";
-            this.btnRecords.Tag = "Records";
-            this.btnRecords.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRecords.Click += new System.EventHandler(this.NavButton_Click);
-            //
+            // 
+            btnCustomers.BackColor = Color.FromArgb(12, 34, 51);
+            btnCustomers.Cursor = Cursors.Hand;
+            btnCustomers.Dock = DockStyle.Fill;
+            btnCustomers.FlatAppearance.BorderSize = 0;
+            btnCustomers.FlatStyle = FlatStyle.Flat;
+            btnCustomers.Font = new Font("Segoe UI", 10F);
+            btnCustomers.ForeColor = Color.FromArgb(155, 170, 181);
+            btnCustomers.Image = Properties.Resources.cust;
+            btnCustomers.Location = new Point(3, 185);
+            btnCustomers.Name = "btnCustomers";
+            btnCustomers.Padding = new Padding(20, 0, 0, 0);
+            btnCustomers.Size = new Size(214, 71);
+            btnCustomers.TabIndex = 2;
+            btnCustomers.Tag = "Customers";
+            btnCustomers.Text = "Customers";
+            btnCustomers.TextAlign = ContentAlignment.MiddleLeft;
+            btnCustomers.UseVisualStyleBackColor = false;
+            btnCustomers.Click += NavButton_Click;
+            // 
             // btnBoatHire
-            //
-            this.btnBoatHire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBoatHire.FlatAppearance.BorderSize = 0;
-            this.btnBoatHire.BackColor = Theme.SidebarColor;
-            this.btnBoatHire.ForeColor = Theme.MutedTextColor;
-            this.btnBoatHire.Font = Theme.NavFont(selected: false);
-            this.btnBoatHire.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBoatHire.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnBoatHire.Location = new System.Drawing.Point(0, 110 + (Theme.NavButtonHeight * 5));
-            this.btnBoatHire.Size = new System.Drawing.Size(Theme.SidebarWidth, Theme.NavButtonHeight);
-            this.btnBoatHire.Name = "btnBoatHire";
-            this.btnBoatHire.Text = "Boat Hire";
-            this.btnBoatHire.Tag = "Boat Hire";
-            this.btnBoatHire.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBoatHire.Click += new System.EventHandler(this.NavButton_Click);
-            //
+            // 
+            btnBoatHire.BackColor = Color.FromArgb(12, 34, 51);
+            btnBoatHire.Cursor = Cursors.Hand;
+            btnBoatHire.Dock = DockStyle.Fill;
+            btnBoatHire.FlatAppearance.BorderSize = 0;
+            btnBoatHire.FlatStyle = FlatStyle.Flat;
+            btnBoatHire.Font = new Font("Segoe UI", 10F);
+            btnBoatHire.ForeColor = Color.FromArgb(155, 170, 181);
+            btnBoatHire.Image = Properties.Resources.boat;
+            btnBoatHire.Location = new Point(3, 262);
+            btnBoatHire.Name = "btnBoatHire";
+            btnBoatHire.Padding = new Padding(20, 0, 0, 0);
+            btnBoatHire.Size = new Size(214, 71);
+            btnBoatHire.TabIndex = 0;
+            btnBoatHire.Tag = "Boat Hire";
+            btnBoatHire.Text = "Boat Hire";
+            btnBoatHire.TextAlign = ContentAlignment.MiddleLeft;
+            btnBoatHire.UseVisualStyleBackColor = false;
+            btnBoatHire.Click += NavButton_Click;
+            // 
+            // btnRecords
+            // 
+            btnRecords.BackColor = Color.FromArgb(12, 34, 51);
+            btnRecords.Cursor = Cursors.Hand;
+            btnRecords.Dock = DockStyle.Fill;
+            btnRecords.FlatAppearance.BorderSize = 0;
+            btnRecords.FlatStyle = FlatStyle.Flat;
+            btnRecords.Font = new Font("Segoe UI", 10F);
+            btnRecords.ForeColor = Color.FromArgb(155, 170, 181);
+            btnRecords.Image = Properties.Resources.recs;
+            btnRecords.Location = new Point(3, 339);
+            btnRecords.Name = "btnRecords";
+            btnRecords.Padding = new Padding(20, 0, 0, 0);
+            btnRecords.Size = new Size(214, 71);
+            btnRecords.TabIndex = 1;
+            btnRecords.Tag = "Records";
+            btnRecords.Text = "Records";
+            btnRecords.TextAlign = ContentAlignment.MiddleLeft;
+            btnRecords.UseVisualStyleBackColor = false;
+            btnRecords.Click += NavButton_Click;
+            // 
+            // btnSlips
+            // 
+            btnSlips.BackColor = Color.FromArgb(12, 34, 51);
+            btnSlips.Cursor = Cursors.Hand;
+            btnSlips.Dock = DockStyle.Fill;
+            btnSlips.FlatAppearance.BorderSize = 0;
+            btnSlips.FlatStyle = FlatStyle.Flat;
+            btnSlips.Font = new Font("Segoe UI", 10F);
+            btnSlips.ForeColor = Color.FromArgb(155, 170, 181);
+            btnSlips.Image = Properties.Resources.slips;
+            btnSlips.Location = new Point(3, 416);
+            btnSlips.Name = "btnSlips";
+            btnSlips.Padding = new Padding(20, 0, 0, 0);
+            btnSlips.Size = new Size(214, 71);
+            btnSlips.TabIndex = 3;
+            btnSlips.Tag = "Slips";
+            btnSlips.Text = "Slips";
+            btnSlips.TextAlign = ContentAlignment.MiddleLeft;
+            btnSlips.UseVisualStyleBackColor = false;
+            btnSlips.Click += NavButton_Click;
+            // 
+            // btnLeases
+            // 
+            btnLeases.BackColor = Color.FromArgb(12, 34, 51);
+            btnLeases.Cursor = Cursors.Hand;
+            btnLeases.Dock = DockStyle.Fill;
+            btnLeases.FlatAppearance.BorderSize = 0;
+            btnLeases.FlatStyle = FlatStyle.Flat;
+            btnLeases.Font = new Font("Segoe UI", 10F);
+            btnLeases.ForeColor = Color.FromArgb(155, 170, 181);
+            btnLeases.Image = Properties.Resources.lease;
+            btnLeases.Location = new Point(3, 493);
+            btnLeases.Name = "btnLeases";
+            btnLeases.Padding = new Padding(20, 0, 0, 0);
+            btnLeases.Size = new Size(214, 71);
+            btnLeases.TabIndex = 4;
+            btnLeases.Tag = "Leases";
+            btnLeases.Text = "Leases";
+            btnLeases.TextAlign = ContentAlignment.MiddleLeft;
+            btnLeases.UseVisualStyleBackColor = false;
+            btnLeases.Click += NavButton_Click;
+            // 
             // contentPanel
-            //
-            this.contentPanel.BackColor = Theme.ContentBackColor;
-            this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentPanel.Padding = new System.Windows.Forms.Padding(Theme.ContentPadding);
-            this.contentPanel.Name = "contentPanel";
-            //
+            // 
+            contentPanel.BackColor = Color.White;
+            contentPanel.Dock = DockStyle.Fill;
+            contentPanel.Location = new Point(220, 0);
+            contentPanel.Name = "contentPanel";
+            contentPanel.Padding = new Padding(24);
+            contentPanel.Size = new Size(880, 650);
+            contentPanel.TabIndex = 0;
+            // 
             // MainForm
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 650);
-            this.MinimumSize = new System.Drawing.Size(900, 550);
-            this.Controls.Add(this.contentPanel);
-            this.Controls.Add(this.sidebarPanel);
-            this.Name = "MainForm";
-            this.Text = "Popeye Marina - Harbor Master Admin";
-            this.sidebarPanel.ResumeLayout(false);
-            this.sidebarPanel.PerformLayout();
-            this.ResumeLayout(false);
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1100, 650);
+            Controls.Add(contentPanel);
+            Controls.Add(sidebarPanel);
+            MinimumSize = new Size(900, 550);
+            Name = "MainForm";
+            Text = "Popeye Marina - Harbor Master Admin";
+            sidebarPanel.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
         }
+
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }
