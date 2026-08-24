@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PopeyeMarina.Models
+namespace PopeyeMarina.Core.Models
 {
     public abstract class Boat
     {

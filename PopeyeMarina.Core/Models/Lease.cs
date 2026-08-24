@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PopeyeMarina.Models;
+using PopeyeMarina.Core.Models;
 
-namespace PopeyeMarina.Models
+namespace PopeyeMarina.Core.Models
 {
     public abstract class Lease
     {

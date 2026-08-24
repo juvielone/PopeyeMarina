@@ -1,6 +1,6 @@
 using System;
 
-namespace PopeyeMarina.Models
+namespace PopeyeMarina.Core.Models
 {
     // Represents a customer hiring a RentalBoat for a date range.
     // Deliberately unrelated to Lease/AnnualLease/DailyLease, which represent

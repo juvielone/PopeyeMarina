@@ -1,9 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
-using PopeyeMarina.Models;
+using PopeyeMarina.Core.Models;
 using System;
 using System.Data;
 
-namespace PopeyeMarina.Data
+namespace PopeyeMarina.Core.Data
 {
     public static class DockData
     {

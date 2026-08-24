@@ -1,8 +1,8 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using PopeyeMarina.Data;
-using PopeyeMarina.Models;
+using PopeyeMarina.Core.Data;
+using PopeyeMarina.Core.Models;
 using PopeyeMarina.Theming;
 
 namespace PopeyeMarina.Screens

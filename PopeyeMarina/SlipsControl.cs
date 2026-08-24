@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using PopeyeMarina.Data;
-using PopeyeMarina.Models;
+using PopeyeMarina.Core.Data;
+using PopeyeMarina.Core.Models;
 
 namespace PopeyeMarina.Screens
 {

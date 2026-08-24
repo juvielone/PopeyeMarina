@@ -1,5 +1,30 @@
 using PopeyeMarina.Data;
-using PopeyeMarina.Models;
+using PopeyeMarina.namespace PopeyeMarina.Models
+{
+    public class Customer
+    {
+        public int CustomerID { get; set; }
+        public string CustomerName { get; set; }
+    }
+
+    public class RentalBoat
+    {
+        public int RentalBoatID { get; set; }
+        public string BoatName { get; set; }
+        public string BoatType { get; set; }
+    }
+
+    public class BoatHire
+    {
+        public int HireID { get; set; }
+        public int CustomerID { get; set; }
+        public int RentalBoatID { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public System.DateTime EndDate { get; set; }
+        public string Status { get; set; }
+        public int DurationDays => (EndDate - StartDate).Days;
+    }
+};
 using System;
 using System.Drawing;
 using System.Windows.Forms;

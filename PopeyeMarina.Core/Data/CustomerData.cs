@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using PopeyeMarina.Models;
+using PopeyeMarina.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PopeyeMarina.Data
+namespace PopeyeMarina.Core.Data
 {
     public static class CustomerData
     {

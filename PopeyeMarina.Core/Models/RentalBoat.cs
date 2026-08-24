@@ -1,4 +1,4 @@
-namespace PopeyeMarina.Models
+namespace PopeyeMarina.Core.Models
 {
     // Represents a marina-owned boat available for hire.
     // Deliberately unrelated to Boat/Sailboat/Powerboat, which represent

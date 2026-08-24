@@ -1,4 +1,4 @@
-﻿namespace PopeyeMarina.Config
+﻿namespace PopeyeMarina.Core.Config
 {
     public static class RateConfig
     {

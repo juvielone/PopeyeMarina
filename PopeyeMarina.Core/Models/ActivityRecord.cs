@@ -1,6 +1,6 @@
 using System;
 
-namespace PopeyeMarina.Models
+namespace PopeyeMarina.Core.Models
 {
     // Not backed by a database table. Exists only to feed the Dashboard's
     // unified activity grid. Lease and BoatHire remain the real, separate
