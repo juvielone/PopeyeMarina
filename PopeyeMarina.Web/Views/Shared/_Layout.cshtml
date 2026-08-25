@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - Popeye Marina</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="app-shell">
+
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                Popeye Marina
+            </div>
+
+            <nav class="sidebar-nav nav flex-column">
+
+                <a class="nav-link"
+                   asp-controller="Leases"
+                   asp-action="Index">
+                    Leases
+                </a>
+
+                <a class="nav-link"
+                   asp-controller="Slips"
+                   asp-action="Index">
+                    Slips
+                </a>
+
+                <a class="nav-link"
+                   asp-controller="Docks"
+                   asp-action="Index">
+                    Docks
+                </a>
+
+                <a class="nav-link"
+                   asp-controller="Customers"
+                   asp-action="Index">
+                    Customers
+                </a>
+
+                <a class="nav-link"
+                   asp-controller="Records"
+                   asp-action="Index">
+                    Records
+                </a>
+                <form asp-controller="Account" asp-action="Logout" method="post" class="mt-3">
+                    <button type="submit" class="nav-link btn btn-link text-start w-100">
+                        Logout
+                    </button>
+                </form>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            @RenderBody()
+        </main>
+
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopeyeMarina", "PopeyeMarin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopeyeMarina.Core", "PopeyeMarina.Core\PopeyeMarina.Core.csproj", "{C368FC7B-6A06-4898-A5AD-FFF48CBB2013}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopeyeMarina.Web", "PopeyeMarina.Web\PopeyeMarina.Web.csproj", "{F70C22E1-7036-480A-B37B-A39BA8315C72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C368FC7B-6A06-4898-A5AD-FFF48CBB2013}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C368FC7B-6A06-4898-A5AD-FFF48CBB2013}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C368FC7B-6A06-4898-A5AD-FFF48CBB2013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F70C22E1-7036-480A-B37B-A39BA8315C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F70C22E1-7036-480A-B37B-A39BA8315C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F70C22E1-7036-480A-B37B-A39BA8315C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F70C22E1-7036-480A-B37B-A39BA8315C72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<PopeyeMarina.Core.Models.Customer>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1>Customers</h1>
+            <p class="text-muted mb-0">Manage marina customers.</p>
+        </div>
+    </div>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    <!-- Add Customer -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Add Customer</h5>
+
+            <form asp-controller="Customers"
+                  asp-action="Add"
+                  method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+                        <label for="CustomerName" class="form-label">
+                            Name
+                        </label>
+
+                        <input type="text"
+                               id="CustomerName"
+                               name="CustomerName"
+                               class="form-control"
+                               required />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="Address" class="form-label">
+                            Address
+                        </label>
+
+                        <input type="text"
+                               id="Address"
+                               name="Address"
+                               class="form-control"
+                               required />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="PhoneNo" class="form-label">
+                            Phone
+                        </label>
+
+                        <input type="text"
+                               id="PhoneNo"
+                               name="PhoneNo"
+                               class="form-control"
+                               required />
+                    </div>
+
+                </div>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">
+                        Add Customer
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer List -->
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
+                    <th>Address</th>
+                    <th>Phone No</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@customer.CustomerID</td>
+                        <td>@customer.CustomerName</td>
+                        <td>@customer.Address</td>
+                        <td>@customer.PhoneNo</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

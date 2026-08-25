@@ -1,0 +1,118 @@
+﻿@model IEnumerable<PopeyeMarina.Core.Models.Dock>
+
+@{
+    ViewData["Title"] = "Docks";
+}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1>Docks</h1>
+            <p class="text-muted mb-0">Manage marina docks.</p>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3"></div>
+
+    <!-- Add Dock -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Add Dock</h5>
+
+            <form asp-controller="Docks"
+                  asp-action="Add"
+                  method="post">
+
+                <div class="row g-3 align-items-end">
+
+                    <div class="col-md-5">
+                        <label for="Location" class="form-label">
+                            Location
+                        </label>
+
+                        <input type="text"
+                               id="Location"
+                               name="Location"
+                               class="form-control"
+                               required />
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                   id="HasElectricity"
+                                   name="HasElectricity"
+                                   value="true"
+                                   class="form-check-input" />
+
+                            <label for="HasElectricity"
+                                   class="form-check-label">
+                                Electricity
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                   id="HasWater"
+                                   name="HasWater"
+                                   value="true"
+                                   class="form-check-input" />
+
+                            <label for="HasWater"
+                                   class="form-check-label">
+                                Water
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Add Dock
+                        </button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Dock List -->
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Dock ID</th>
+                    <th>Location</th>
+                    <th>Electricity</th>
+                    <th>Water</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var dock in Model)
+                {
+                    <tr>
+                        <td>@dock.DockID</td>
+                        <td>@dock.Location</td>
+                        <td>@(dock.HasElectricity ? "Yes" : "No")</td>
+                        <td>@(dock.HasWater ? "Yes" : "No")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
