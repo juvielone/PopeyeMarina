@@ -104,7 +104,7 @@ namespace PopeyeMarina.Web.Controllers
 
                 Console.WriteLine("COOKIE CREATED");
 
-                return RedirectToAction("Index", "Customers");
+                return RedirectToAction("Index", "Dashboard");
             }
 
             Console.WriteLine("LOGIN FAILED");

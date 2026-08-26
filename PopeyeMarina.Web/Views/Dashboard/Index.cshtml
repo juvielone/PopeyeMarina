@@ -1,0 +1,173 @@
+﻿@model PopeyeMarina.Web.ViewModels.DashboardPageModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid">
+
+    <div class="mb-4">
+        <h1>Dashboard</h1>
+        <p class="text-muted mb-0">
+            Overview of current marina activity.
+        </p>
+    </div>
+
+    <!-- Activity Type Filters -->
+    <div class="mb-4">
+
+        <div class="btn-group text-white" role="group">
+
+            <a asp-controller="Dashboard"
+               asp-action="Index"
+               asp-route-activityFilter="All"
+               asp-route-customerId="@Model.SelectedCustomerId"
+               class="btn @(Model.ActivityFilter == "All"
+                                   ? "btn-primary"
+                                   : "btn-outline-secondary")">
+                All
+            </a>
+
+            <a asp-controller="Dashboard"
+               asp-action="Index"
+               asp-route-activityFilter="Slip Lease"
+               asp-route-customerId="@Model.SelectedCustomerId"
+               class="btn @(Model.ActivityFilter == "Slip Lease"
+                                   ? "btn-primary"
+                                   : "btn-outline-secondary")">
+                Slip Lease
+            </a>
+
+            <a asp-controller="Dashboard"
+               asp-action="Index"
+               asp-route-activityFilter="Boat Hire"
+               asp-route-customerId="@Model.SelectedCustomerId"
+               class="btn @(Model.ActivityFilter == "Boat Hire"
+                                   ? "btn-primary"
+                                   : "btn-outline-secondary")">
+                Boat Hire
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Customer Filter -->
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <form asp-controller="Dashboard"
+                  asp-action="Index"
+                  method="get">
+
+                <!-- Preserve the activity filter when changing customer -->
+                <input type="hidden"
+                       name="activityFilter"
+                       value="@Model.ActivityFilter" />
+
+                <div class="row align-items-end">
+
+                    <div class="col-md-6">
+
+                        <label for="customerId"
+                               class="form-label">
+                            Customer
+                        </label>
+
+                        <select id="customerId"
+                                name="customerId"
+                                class="form-select"
+                                onchange="this.form.submit()">
+
+                            <option value="-1"
+                                    selected="@(Model.SelectedCustomerId == -1)">
+                                All customers
+                            </option>
+
+                            @foreach (var customer in Model.Customers)
+                            {
+                                <option value="@customer.CustomerID"
+                                        selected="@(Model.SelectedCustomerId == customer.CustomerID)">
+                                    @customer.CustomerName
+                                </option>
+                            }
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Activity Table -->
+    <div class="table-responsive">
+
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Activity</th>
+                    <th>Item</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @if (!Model.Activity.Any())
+                {
+                    <tr>
+                        <td colspan="6"
+                            class="text-muted text-center">
+                            No activity found.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var activity in Model.Activity)
+                    {
+                        <tr>
+
+                            <td>
+                                @activity.CustomerName
+                            </td>
+
+                            <td>
+                                @activity.ActivityType
+                            </td>
+
+                            <td>
+                                @activity.ItemLabel
+                            </td>
+
+                            <td>
+                                @activity.StartDate.ToShortDateString()
+                            </td>
+
+                            <td>
+                                @(activity.EndDate?.ToShortDateString() ?? "—")
+                            </td>
+
+                            <td>
+                                @activity.Status
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

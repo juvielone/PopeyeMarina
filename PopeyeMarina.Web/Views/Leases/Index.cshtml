@@ -1,0 +1,465 @@
+﻿@model PopeyeMarina.Web.ViewModels.LeasesPageModel
+
+@{
+    ViewData["Title"] = "Leases";
+}
+
+
+
+<div class="container-fluid">
+
+    <div class="mb-4">
+        <h1>Leases</h1>
+        <p class="text-muted mb-0">
+            Manage marina slip leases.
+        </p>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+    <ul class="nav nav-tabs mb-4">
+
+        <li class="nav-item">
+            <a class="nav-link active"
+               asp-controller="Leases"
+               asp-action="Index">
+                Create
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link"
+               asp-controller="Leases"
+               asp-action="Search">
+                Search
+            </a>
+        </li>
+
+    </ul>
+    <!-- Add Lease -->
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <h5 class="card-title mb-4">
+                Add New Lease
+            </h5>
+
+            <form asp-controller="Leases"
+                  asp-action="Save"
+                  method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="row g-3">
+
+                    <!-- Customer -->
+                    <div class="col-md-6">
+                        <label asp-for="Form.CustomerID"
+                               class="form-label">
+                            Customer
+                        </label>
+
+                        <select asp-for="Form.CustomerID"
+                                id="customerSelect"
+                                class="form-select">
+
+                            <option value="">
+                                Select Customer
+                            </option>
+
+                            @foreach (var customer in Model.Customers)
+                            {
+                                <option value="@customer.CustomerID">
+                                    @customer.CustomerName
+                                </option>
+                            }
+
+                        </select>
+
+                        <span asp-validation-for="Form.CustomerID"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Vessel -->
+                    <div class="col-md-6">
+                        <label asp-for="Form.StateRegoNo"
+                               class="form-label">
+                            Vessel
+                        </label>
+
+                        <select asp-for="Form.StateRegoNo"
+                                id="vesselSelect"
+                                class="form-select"
+                                disabled>
+
+                            <option value="">
+                                Select Vessel
+                            </option>
+
+                        </select>
+
+                        <span asp-validation-for="Form.StateRegoNo"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Vacant Slip -->
+                    <div class="col-md-6">
+                        <label asp-for="Form.SlipID"
+                               class="form-label">
+                            Slip
+                        </label>
+
+                        <select asp-for="Form.SlipID"
+                                class="form-select">
+
+                            <option value="">
+                                Select Slip
+                            </option>
+
+                            @foreach (var slip in Model.VacantSlips)
+                            {
+                                <option value="@slip.SlipID">
+                                    @($"Slip {slip.SlipID} — {slip.Width}m x {slip.SlipLength}m{(slip.IsCovered ? ", covered" : "")}")
+                                </option>
+                            }
+
+                        </select>
+
+                        <span asp-validation-for="Form.SlipID"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Lease Type -->
+                    <div class="col-12">
+                        <label class="form-label">Lease Type</label>
+
+                        <div class="btn-group" role="group" aria-label="Lease type">
+                            <input type="radio"
+                                   class="btn-check"
+                                   asp-for="Form.IsAnnual"
+                                   value="true"
+                                   id="annualLease"
+                                   autocomplete="off" />
+
+                            <label class="btn btn-outline-primary"
+                                   for="annualLease">
+                                Annual
+                            </label>
+
+                            <input type="radio"
+                                   class="btn-check"
+                                   asp-for="Form.IsAnnual"
+                                   value="false"
+                                   id="dailyLease"
+                                   autocomplete="off" />
+
+                            <label class="btn btn-outline-primary"
+                                   for="dailyLease">
+                                Daily
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Start Date -->
+                    <div class="col-md-6">
+                        <label asp-for="Form.StartDate"
+                               class="form-label">
+                            Start Date
+                        </label>
+
+                        <input asp-for="Form.StartDate"
+                               type="date"
+                               class="form-control"
+                               id="startDate" />
+
+                        <span asp-validation-for="Form.StartDate"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Annual End Date Preview -->
+                    <div class="col-md-6"
+                         id="annualPreviewContainer">
+
+                        <label class="form-label">
+                            End Date
+                        </label>
+
+                        <input type="text"
+                               id="annualEndPreview"
+                               class="form-control"
+                               readonly />
+
+                        <div class="form-text">
+                            Computed annual end date preview.
+                        </div>
+                    </div>
+
+                    <!-- Daily End Date -->
+                    <div class="col-md-6"
+                         id="dailyEndContainer">
+
+                        <label asp-for="Form.EndDate"
+                               class="form-label">
+                            End Date
+                        </label>
+
+                        <input asp-for="Form.EndDate"
+                               type="date"
+                               class="form-control"
+                               id="endDate" />
+
+                        <span asp-validation-for="Form.EndDate"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Daily Number of Days Preview -->
+                    <div class="col-md-6"
+                         id="dailyDaysContainer">
+
+                        <label class="form-label">
+                            Number of Days
+                        </label>
+
+                        <input type="text"
+                               id="numberOfDaysPreview"
+                               class="form-control"
+                               readonly />
+                    </div>
+
+                    <!-- Pay Monthly -->
+                    <div class="col-12"
+                         id="payMonthlyContainer">
+
+                        <div class="form-check">
+
+                            <input asp-for="Form.PayMonthly"
+                                   class="form-check-input"
+                                   type="checkbox"
+                                   id="payMonthly" />
+
+                            <label asp-for="Form.PayMonthly"
+                                   class="form-check-label">
+                                Pay Monthly
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Add Lease
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script>
+        // Customer → Vessel cascade
+        const customerSelect =
+            document.getElementById("customerSelect");
+
+        const vesselSelect =
+            document.getElementById("vesselSelect");
+
+        customerSelect.addEventListener("change", async function() {
+
+            const customerId = this.value;
+
+            vesselSelect.innerHTML =
+                '<option value="">Select Vessel</option>';
+
+            vesselSelect.disabled = true;
+
+            if (!customerId) {
+                return;
+            }
+
+            const response = await fetch(
+                `/Leases/BoatsForCustomer?customerId=${customerId}`
+            );
+
+            const boats = await response.json();
+
+            boats.forEach(boat => {
+
+                const option =
+                    document.createElement("option");
+
+                option.value = boat.stateRegoNo;
+                option.textContent = boat.display;
+
+                vesselSelect.appendChild(option);
+            });
+
+            vesselSelect.disabled =
+                boats.length === 0;
+        });
+
+
+        // Annual / Daily lease toggle
+        const annualLease =
+            document.getElementById("annualLease");
+
+        const dailyLease =
+            document.getElementById("dailyLease");
+
+        const startDate =
+            document.getElementById("startDate");
+
+        const endDate =
+            document.getElementById("endDate");
+
+        const annualPreviewContainer =
+            document.getElementById("annualPreviewContainer");
+
+        const annualEndPreview =
+            document.getElementById("annualEndPreview");
+
+        const dailyEndContainer =
+            document.getElementById("dailyEndContainer");
+
+        const dailyDaysContainer =
+            document.getElementById("dailyDaysContainer");
+
+        const numberOfDaysPreview =
+            document.getElementById("numberOfDaysPreview");
+
+        const payMonthlyContainer =
+            document.getElementById("payMonthlyContainer");
+
+
+        function updateLeaseTypeVisibility() {
+
+            if (annualLease.checked) {
+
+                // Annual
+                annualPreviewContainer.classList.remove("d-none");
+
+                dailyEndContainer.classList.add("d-none");
+
+                dailyDaysContainer.classList.add("d-none");
+
+                payMonthlyContainer.classList.remove("d-none");
+
+            }
+            else {
+
+                // Daily
+                annualPreviewContainer.classList.add("d-none");
+
+                dailyEndContainer.classList.remove("d-none");
+
+                dailyDaysContainer.classList.remove("d-none");
+
+                payMonthlyContainer.classList.add("d-none");
+            }
+
+            updateComputedFields();
+        }
+
+
+        function updateComputedFields() {
+
+            if (!startDate.value) {
+                return;
+            }
+
+            const start =
+                new Date(startDate.value + "T00:00:00");
+
+
+            // Annual end-date preview
+            if (annualLease.checked) {
+
+                const annualEnd =
+                    new Date(start);
+
+                annualEnd.setFullYear(
+                    annualEnd.getFullYear() + 1
+                );
+
+                annualEnd.setDate(
+                    annualEnd.getDate() - 1
+                );
+
+                annualEndPreview.value =
+                    annualEnd.toLocaleDateString();
+            }
+
+
+            // Daily number-of-days preview
+            else {
+
+                if (!endDate.value) {
+
+                    numberOfDaysPreview.value = "";
+
+                    return;
+                }
+
+                const end =
+                    new Date(endDate.value + "T00:00:00");
+
+                const difference =
+                    end.getTime() - start.getTime();
+
+                const days =
+                    Math.ceil(
+                        difference /
+                        (1000 * 60 * 60 * 24)
+                    );
+
+                numberOfDaysPreview.value =
+                    days > 0 ? days : "0";
+            }
+        }
+
+
+        // Lease type changes
+        annualLease.addEventListener(
+            "change",
+            updateLeaseTypeVisibility
+        );
+
+        dailyLease.addEventListener(
+            "change",
+            updateLeaseTypeVisibility
+        );
+
+
+        // Date changes
+        startDate.addEventListener(
+            "change",
+            updateComputedFields
+        );
+
+        endDate.addEventListener(
+            "change",
+            updateComputedFields
+        );
+
+
+        // Initialize the page
+        updateLeaseTypeVisibility();
+
+    </script>
+
+}

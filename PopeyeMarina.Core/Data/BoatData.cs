@@ -166,5 +166,51 @@ namespace PopeyeMarina.Core.Data
 
             return boats;
         }
+
+        public static List<Boat> GetAllBoats()
+        {
+            List<Boat> boats = new List<Boat>();
+
+            try
+            {
+                using (SqlConnection connection = DatabaseHelper.GetConnection())
+                {
+                    connection.Open();
+
+                    string sql = "SELECT * FROM Boat";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string boatType = reader.GetString(reader.GetOrdinal("BoatType"));
+
+                            Boat boat = boatType == "Sailboat"
+                                ? new Sailboat()
+                                : new Powerboat();
+
+                            boat.StateRegoNo = reader.GetString(reader.GetOrdinal("StateRegoNo"));
+                            boat.BoatLength = reader.GetDecimal(reader.GetOrdinal("BoatLength"));
+                            boat.Manufacturer = reader.GetString(reader.GetOrdinal("Manufacturer"));
+                            boat.ModelYear = reader.GetInt32(reader.GetOrdinal("ModelYear"));
+                            boat.BoatType = boatType;
+                            boat.CustomerID = reader.GetInt32(reader.GetOrdinal("CustomerID"));
+
+                            boats.Add(boat);
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(
+                    "Unable to retrieve boats from the database.",
+                    ex
+                );
+            }
+
+            return boats;
+        }
     }
 }

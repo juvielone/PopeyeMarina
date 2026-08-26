@@ -1,0 +1,436 @@
+﻿@model PopeyeMarina.Web.ViewModels.BoatHirePageModel
+
+@{
+    ViewData["Title"] = "Boat Hire";
+}
+
+<div class="container-fluid">
+
+    <div class="mb-4">
+        <h1>Boat Hire</h1>
+        <p class="text-muted mb-0">
+            Hire a rental boat for a selected date range.
+        </p>
+    </div>
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+    <div class="card">
+        <div class="card-body">
+
+            <h5 class="card-title mb-4">
+                Create Boat Hire
+            </h5>
+
+            <form asp-controller="BoatHire"
+                  asp-action="CreateHire"
+                  method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="row g-3">
+
+                    <!-- Customer -->
+                    <div class="col-md-6">
+
+                        <label asp-for="Form.CustomerID"
+                               class="form-label">
+                            Customer
+                        </label>
+
+                        <select asp-for="Form.CustomerID"
+                                class="form-select">
+
+                            <option value="">
+                                Select Customer
+                            </option>
+
+                            @foreach (var customer in Model.Customers)
+                            {
+                                <option value="@customer.CustomerID">
+                                    @customer.CustomerName
+                                </option>
+                            }
+
+                        </select>
+
+                        <span asp-validation-for="Form.CustomerID"
+                              class="text-danger"></span>
+
+                    </div>
+
+                    <!-- Start Date -->
+                    <div class="col-md-6">
+
+                        <label asp-for="Form.StartDate"
+                               class="form-label">
+                            Start Date
+                        </label>
+
+                        <input asp-for="Form.StartDate"
+                               type="date"
+                               id="startDate"
+                               class="form-control" />
+
+                        <span asp-validation-for="Form.StartDate"
+                              class="text-danger"></span>
+
+                    </div>
+
+                    <!-- End Date -->
+                    <div class="col-md-6">
+
+                        <label asp-for="Form.EndDate"
+                               class="form-label">
+                            End Date
+                        </label>
+
+                        <input asp-for="Form.EndDate"
+                               type="date"
+                               id="endDate"
+                               class="form-control" />
+
+                        <span asp-validation-for="Form.EndDate"
+                              class="text-danger"></span>
+
+                    </div>
+
+                    <!-- Duration -->
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Duration
+                        </label>
+
+                        <div id="durationText"
+                             class="form-control-plaintext">
+                            —
+                        </div>
+
+                    </div>
+
+                    <!-- Rental Boat -->
+                    <div class="col-12">
+
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+
+                            <label asp-for="Form.RentalBoatID"
+                                   class="form-label mb-0">
+                                Rental Boat
+                            </label>
+
+                            <button type="button"
+                                    class="btn btn-sm btn-outline-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#addBoatModal">
+                                + Add Boat
+                            </button>
+
+                        </div>
+
+                        <select asp-for="Form.RentalBoatID"
+                                id="rentalBoatSelect"
+                                class="form-select">
+
+                            <option value="">
+                                Select Rental Boat
+                            </option>
+
+                            @foreach (var boat in Model.AvailableBoats)
+                            {
+                                <option value="@boat.RentalBoatID">
+                                    @boat.BoatName (@boat.BoatType)
+                                </option>
+                            }
+
+                        </select>
+
+                        <span asp-validation-for="Form.RentalBoatID"
+                              class="text-danger"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Create Boat Hire
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    <!-- Add Rental Boat Modal -->
+    <div class="modal fade"
+         id="addBoatModal"
+         tabindex="-1"
+         aria-labelledby="addBoatModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title"
+                        id="addBoatModalLabel">
+                        Add Rental Boat
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div id="addBoatError"
+                         class="alert alert-danger d-none">
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label for="rentalBoatName"
+                               class="form-label">
+                            Boat Name
+                        </label>
+
+                        <input type="text"
+                               id="rentalBoatName"
+                               class="form-control" />
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Boat Type
+                        </label>
+
+                        <div class="form-check">
+
+                            <input type="radio"
+                                   class="form-check-input"
+                                   name="rentalBoatType"
+                                   id="rentalSailboat"
+                                   value="Sailboat"
+                                   checked />
+
+                            <label class="form-check-label"
+                                   for="rentalSailboat">
+                                Sailboat
+                            </label>
+
+                        </div>
+
+                        <div class="form-check">
+
+                            <input type="radio"
+                                   class="form-check-input"
+                                   name="rentalBoatType"
+                                   id="rentalPowerboat"
+                                   value="Powerboat" />
+
+                            <label class="form-check-label"
+                                   for="rentalPowerboat">
+                                Powerboat
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+                    <button type="button"
+                            id="saveRentalBoat"
+                            class="btn btn-primary">
+                        Add Boat
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        const startDate =
+            document.getElementById("startDate");
+
+        const endDate =
+            document.getElementById("endDate");
+
+        const rentalBoatSelect =
+            document.getElementById("rentalBoatSelect");
+
+        const durationText =
+            document.getElementById("durationText");
+
+
+        async function refreshAvailableBoats() {
+
+            const start = startDate.value;
+            const end = endDate.value;
+
+            if (!start || !end) {
+                return;
+            }
+
+            rentalBoatSelect.innerHTML =
+                '<option value="">Select Rental Boat</option>';
+
+            rentalBoatSelect.disabled = true;
+
+            const response = await fetch(
+                `/BoatHire/AvailableBoats?startDate=${start}&endDate=${end}`
+            );
+
+            const result = await response.json();
+
+            if (result.error) {
+
+                durationText.textContent =
+                    result.error;
+
+                return;
+            }
+
+            result.boats.forEach(boat => {
+
+                const option =
+                    document.createElement("option");
+
+                option.value = boat.rentalBoatId;
+                option.textContent = boat.display;
+
+                rentalBoatSelect.appendChild(option);
+            });
+
+            rentalBoatSelect.disabled =
+                result.boats.length === 0;
+
+            durationText.textContent =
+                result.durationText;
+        }
+
+        const saveRentalBoat =
+            document.getElementById("saveRentalBoat");
+
+        const rentalBoatName =
+            document.getElementById("rentalBoatName");
+
+     
+
+        const addBoatError =
+            document.getElementById("addBoatError");
+
+
+        saveRentalBoat.addEventListener("click", async function() {
+
+            const boatName =
+                rentalBoatName.value.trim();
+
+            const boatType =
+                document.querySelector(
+                    'input[name="rentalBoatType"]:checked'
+                ).value;
+
+           
+
+            addBoatError.classList.add("d-none");
+            addBoatError.textContent = "";
+
+            if (!boatName) {
+
+                addBoatError.textContent =
+                    "Boat name is required.";
+
+                addBoatError.classList.remove("d-none");
+
+                return;
+            }
+
+            const response = await fetch(
+                "/BoatHire/AddRentalBoat",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":
+                            "application/x-www-form-urlencoded"
+                    },
+                    body: new URLSearchParams({
+                        boatName: boatName,
+                        boatType: boatType
+                    })
+                }
+            );
+
+            const result = await response.json();
+
+            if (!result.success) {
+
+                addBoatError.textContent =
+                    result.error;
+
+                addBoatError.classList.remove("d-none");
+
+                return;
+            }
+
+            // Close the modal
+            const modalElement =
+                document.getElementById("addBoatModal");
+
+            const modal =
+                bootstrap.Modal.getInstance(modalElement);
+
+            modal.hide();
+
+            // Clear the form
+            rentalBoatName.value = "";
+
+        
+
+            // Refresh available boats
+            await refreshAvailableBoats();
+        });
+        startDate.addEventListener(
+            "change",
+            refreshAvailableBoats
+        );
+
+        endDate.addEventListener(
+            "change",
+            refreshAvailableBoats
+        );
+    </script>
+
+}

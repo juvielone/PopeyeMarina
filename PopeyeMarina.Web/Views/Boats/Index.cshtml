@@ -1,0 +1,324 @@
+﻿@model PopeyeMarina.Web.ViewModels.BoatsPageModel
+
+@{
+    ViewData["Title"] = "Boats";
+}
+
+<div class="container-fluid">
+
+    <div class="mb-4">
+        <h1>Boats</h1>
+        <p class="text-muted mb-0">Add boats and view their current status.</p>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <!-- Add Boat -->
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <h5 class="card-title mb-4">Add new boat</h5>
+
+            <form asp-controller="Boats"
+                  asp-action="Add"
+                  method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="row g-3">
+
+                    <!-- State Rego -->
+                    <div class="col-md-4">
+                        <label asp-for="Form.StateRegoNo"
+                               class="form-label">
+                            State Rego No
+                        </label>
+
+                        <input asp-for="Form.StateRegoNo"
+                               class="form-control"
+                               required />
+
+                        <span asp-validation-for="Form.StateRegoNo"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Boat Length -->
+                    <div class="col-md-4">
+                        <label asp-for="Form.BoatLength"
+                               class="form-label">
+                            Boat Length
+                        </label>
+
+                        <input asp-for="Form.BoatLength"
+                               type="number"
+                               step="any"
+                               class="form-control"
+                               required />
+
+                        <span asp-validation-for="Form.BoatLength"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Model Year -->
+                    <div class="col-md-4">
+                        <label asp-for="Form.ModelYear"
+                               class="form-label">
+                            Model Year
+                        </label>
+
+                        <input asp-for="Form.ModelYear"
+                               type="number"
+                               class="form-control"
+                               required />
+
+                        <span asp-validation-for="Form.ModelYear"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Manufacturer -->
+                    <div class="col-md-6">
+                        <label asp-for="Form.Manufacturer"
+                               class="form-label">
+                            Manufacturer
+                        </label>
+
+                        <input asp-for="Form.Manufacturer"
+                               class="form-control"
+                               required />
+
+                        <span asp-validation-for="Form.Manufacturer"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Customer -->
+                    <div class="col-md-6">
+                        <label asp-for="Form.CustomerID"
+                               class="form-label">
+                            Owner
+                        </label>
+
+                        <select asp-for="Form.CustomerID"
+                                class="form-select"
+                                required>
+
+                            <option value="">Select owner</option>
+
+                            @foreach (var customer in Model.Customers)
+                            {
+                                <option value="@customer.CustomerID">
+                                    @customer.CustomerName
+                                </option>
+                            }
+
+                        </select>
+
+                        <span asp-validation-for="Form.CustomerID"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Boat Type -->
+                    <div class="col-12">
+                        <label class="form-label">
+                            Boat Type
+                        </label>
+
+                        <div class="form-check">
+                            <input asp-for="Form.IsSailboat"
+                                   class="form-check-input"
+                                   type="checkbox"
+                                   id="IsSailboat" />
+
+                            <label class="form-check-label"
+                                   for="IsSailboat">
+                                Sailboat
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Sailboat Fields -->
+                    <div id="sailboatFields"
+                         class="row g-3 d-none">
+
+                        <div class="col-md-4">
+                            <label asp-for="Form.NumberOfSails"
+                                   class="form-label">
+                                Number of Sails
+                            </label>
+
+                            <input asp-for="Form.NumberOfSails"
+                                   type="number"
+                                   class="form-control" />
+
+                            <span asp-validation-for="Form.NumberOfSails"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="Form.KeelDepth"
+                                   class="form-label">
+                                Keel Depth
+                            </label>
+
+                            <input asp-for="Form.KeelDepth"
+                                   type="number"
+                                   step="any"
+                                   class="form-control" />
+
+                            <span asp-validation-for="Form.KeelDepth"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="Form.MotorType"
+                                   class="form-label">
+                                Motor Type
+                            </label>
+
+                            <input asp-for="Form.MotorType"
+                                   class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <!-- Powerboat Fields -->
+                    <div id="powerboatFields"
+                         class="row g-3">
+
+                        <div class="col-md-6">
+                            <label asp-for="Form.NumberOfEngines"
+                                   class="form-label">
+                                Number of Engines
+                            </label>
+
+                            <input asp-for="Form.NumberOfEngines"
+                                   type="number"
+                                   class="form-control" />
+
+                            <span asp-validation-for="Form.NumberOfEngines"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Form.FuelType"
+                                   class="form-label">
+                                Fuel Type
+                            </label>
+
+                            <input asp-for="Form.FuelType"
+                                   class="form-control" />
+
+                            <span asp-validation-for="Form.FuelType"
+                                  class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Add Boat
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Boat Overview -->
+    <div class="card">
+        <div class="card-body">
+
+            <h5 class="card-title mb-4">Boat Overview</h5>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Boat</th>
+                            <th>Customer</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var row in Model.Overview)
+                        {
+                            <tr>
+                                <td>
+                                    @row.StateRegoNo —
+                                    @row.Manufacturer
+                                    (@row.BoatType)
+                                </td>
+
+                                <td>
+                                    @row.CustomerName
+                                </td>
+
+                                <td>
+                                    @if (row.IsTaken)
+                                    {
+                                        <span class="badge bg-secondary">
+                                            Taken
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">
+                                            Available
+                                        </span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script>
+        const sailboatCheckbox =
+            document.getElementById("IsSailboat");
+
+        const sailboatFields =
+            document.getElementById("sailboatFields");
+
+        const powerboatFields =
+            document.getElementById("powerboatFields");
+
+        function updateBoatTypeFields() {
+            if (sailboatCheckbox.checked) {
+                sailboatFields.classList.remove("d-none");
+                powerboatFields.classList.add("d-none");
+            }
+            else {
+                sailboatFields.classList.add("d-none");
+                powerboatFields.classList.remove("d-none");
+            }
+        }
+
+        sailboatCheckbox.addEventListener(
+            "change",
+            updateBoatTypeFields
+        );
+
+        updateBoatTypeFields();
+    </script>
+
+}

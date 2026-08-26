@@ -1,0 +1,188 @@
+﻿@model PopeyeMarina.Web.ViewModels.LeaseSearchPageModel
+
+@{
+    ViewData["Title"] = "Search Leases";
+}
+
+<div class="container-fluid">
+
+    <div class="mb-4">
+        <h1>Leases</h1>
+        <p class="text-muted mb-0">
+            Search existing marina leases.
+        </p>
+    </div>
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+
+    <!-- Leases sub-navigation -->
+    <ul class="nav nav-tabs mb-4">
+
+        <li class="nav-item">
+            <a class="nav-link"
+               asp-controller="Leases"
+               asp-action="Index">
+                Create
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link active"
+               asp-controller="Leases"
+               asp-action="Search">
+                Search
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- Customer Search -->
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <h5 class="card-title mb-3">
+                Search by Customer
+            </h5>
+
+            <form asp-controller="Leases"
+                  asp-action="Search"
+                  method="get">
+
+                <label for="customerId"
+                       class="form-label">
+                    Customer
+                </label>
+
+                <select id="customerId"
+                        name="customerId"
+                        class="form-select"
+                        onchange="this.form.submit()">
+
+                    <option value="">
+                        Select Customer
+                    </option>
+
+                    @foreach (var customer in Model.Customers)
+                    {
+                        <option value="@customer.CustomerID"
+                                selected="@(Model.SelectedCustomerId == customer.CustomerID)">
+                            @customer.CustomerName
+                        </option>
+                    }
+
+                </select>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Search Results -->
+    @if (Model.SelectedCustomerId.HasValue)
+    {
+        <div class="card">
+
+            <div class="card-body">
+
+                <h5 class="card-title mb-4">
+                    Lease Results
+                </h5>
+
+                @if (Model.Results.Any())
+                {
+                    <div class="table-responsive">
+
+                        <table class="table table-hover">
+
+                            <thead>
+                                <tr>
+                                    <th>Lease ID</th>
+                                    <th>Slip</th>
+                                    <th>Vessel</th>
+                                    <th>Lease Type</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var lease in Model.Results)
+                                {
+                                    <tr>
+                                        <td>
+                                            @lease.LeaseID
+                                        </td>
+
+                                        <td>
+                                            @lease.SlipDisplay
+                                        </td>
+
+                                        <td>
+                                            @lease.StateRegoNo
+                                        </td>
+
+                                        <td>
+                                            @lease.LeaseType
+                                        </td>
+
+                                        <td>
+                                            @lease.StartDate
+                                        </td>
+
+                                        <td>
+                                            @lease.EndDate
+                                        </td>
+
+                                        <td>
+                                            @lease.Amount
+                                        </td>
+
+                                        <td>
+                                            <form asp-controller="Leases"
+                                                  asp-action="Delete"
+                                                  method="post"
+                                                  class="d-inline">
+
+                                                <input type="hidden"
+                                                       name="leaseId"
+                                                       value="@lease.LeaseID" />
+
+                                                <input type="hidden"
+                                                       name="customerId"
+                                                       value="@Model.SelectedCustomerId" />
+
+                                                <button type="submit"
+                                                        class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Delete lease #@lease.LeaseID (@lease.StateRegoNo at @lease.SlipDisplay)? This cannot be undone.');">
+                                                    Delete
+                                                </button>
+
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted mb-0">
+                        No leases found for this customer.
+                    </p>
+                }
+
+            </div>
+
+        </div>
+    }
+
+</div>
