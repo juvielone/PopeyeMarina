@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div class="app-shell">
+    <div class="app-shell ">
 
         <aside class="sidebar">
 
@@ -34,7 +34,7 @@
             <div class="sidebar-brand">
                 <a asp-controller="Dashboard"
                    asp-action="Index">
-                    <img src="~/images/popeye-marina.svg"
+                    <img src="~/images/logo-paru.png"
                          alt="Popeye Marina"
                          class="sidebar-logo" />
                 </a>
@@ -128,9 +128,13 @@
                     </button>
                 </form>
             </nav>
+
+            <!-- Sidebar background image -->
+            <div class="sidebar-background"></div>
         </aside>
 
         <main class="main-content">
+            <div class="dashboard-background"></div>
             @RenderBody()
         </main>
 
