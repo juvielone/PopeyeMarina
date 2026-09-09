@@ -12,7 +12,7 @@ body {
 
 body {
     margin: 0;
-    background-color: white;
+    background-color: #041A2D;
 }
 
 .app-shell {
@@ -23,7 +23,7 @@ body {
 .sidebar {
     width: 240px;
     min-height: 100vh;
-    background-color: var(--navy);
+    background-color: white;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
@@ -57,7 +57,7 @@ body {
 }
 
     .sidebar-nav .nav-link {
-        color: var(--fontColor);
+        color: var(--navy);
         border-radius: 0.5rem;
         margin-bottom: 0.35rem;
         padding: 0.75rem 1rem;
@@ -75,18 +75,20 @@ body {
 .main-content {
     flex: 1;
     min-width: 0;
-    background-color: white;
+    background-color: antiquewhite;
     padding: 2rem;
 }
 
+.container-btn {
+    background-color: antiquewhite;
+}
 /*.main-content {
     flex: 1;
     position: relative;
     overflow: hidden;
     background-color: var(--bgContent);
 }*/
-
-/*.dashboard-background {
+.dashboard-background {
     position: absolute;
     top: 0;
     right: 0;
@@ -98,5 +100,5 @@ body {
     background-size: cover;
     opacity: 0.18;
     pointer-events: none;
-}*/
+}
 
