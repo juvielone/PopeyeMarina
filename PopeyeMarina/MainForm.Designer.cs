@@ -43,7 +43,7 @@ namespace PopeyeMarina
             // 
             // sidebarPanel
             // 
-            sidebarPanel.BackColor = Color.FromArgb(12, 34, 51);
+            sidebarPanel.BackColor = Color.FromArgb(118, 70, 166);
             sidebarPanel.Controls.Add(tableLayoutPanel1);
             sidebarPanel.Dock = DockStyle.Left;
             sidebarPanel.Location = new Point(0, 0);
@@ -96,7 +96,7 @@ namespace PopeyeMarina
             // 
             // btnDashboard
             // 
-            btnDashboard.BackColor = Color.FromArgb(12, 34, 51);
+            btnDashboard.BackColor = Color.FromArgb(118, 70, 166);
             btnDashboard.Cursor = Cursors.Hand;
             btnDashboard.Dock = DockStyle.Fill;
             btnDashboard.FlatAppearance.BorderSize = 0;
@@ -117,7 +117,7 @@ namespace PopeyeMarina
             // 
             // btnCustomers
             // 
-            btnCustomers.BackColor = Color.FromArgb(12, 34, 51);
+            btnCustomers.BackColor = Color.FromArgb(118, 70, 166);
             btnCustomers.Cursor = Cursors.Hand;
             btnCustomers.Dock = DockStyle.Fill;
             btnCustomers.FlatAppearance.BorderSize = 0;
@@ -138,7 +138,7 @@ namespace PopeyeMarina
             // 
             // btnBoatHire
             // 
-            btnBoatHire.BackColor = Color.FromArgb(12, 34, 51);
+            btnBoatHire.BackColor = Color.FromArgb(118, 70, 166);
             btnBoatHire.Cursor = Cursors.Hand;
             btnBoatHire.Dock = DockStyle.Fill;
             btnBoatHire.FlatAppearance.BorderSize = 0;
@@ -159,7 +159,7 @@ namespace PopeyeMarina
             // 
             // btnRecords
             // 
-            btnRecords.BackColor = Color.FromArgb(12, 34, 51);
+            btnRecords.BackColor = Color.FromArgb(118, 70, 166);
             btnRecords.Cursor = Cursors.Hand;
             btnRecords.Dock = DockStyle.Fill;
             btnRecords.FlatAppearance.BorderSize = 0;
@@ -180,7 +180,7 @@ namespace PopeyeMarina
             // 
             // btnSlips
             // 
-            btnSlips.BackColor = Color.FromArgb(12, 34, 51);
+            btnSlips.BackColor = Color.FromArgb(118, 70, 166);
             btnSlips.Cursor = Cursors.Hand;
             btnSlips.Dock = DockStyle.Fill;
             btnSlips.FlatAppearance.BorderSize = 0;
@@ -201,7 +201,7 @@ namespace PopeyeMarina
             // 
             // btnLeases
             // 
-            btnLeases.BackColor = Color.FromArgb(12, 34, 51);
+            btnLeases.BackColor = Color.FromArgb(118, 70, 166);
             btnLeases.Cursor = Cursors.Hand;
             btnLeases.Dock = DockStyle.Fill;
             btnLeases.FlatAppearance.BorderSize = 0;

@@ -10,9 +10,9 @@ namespace PopeyeMarina.Theming
     public static class Theme
     {
         // Colors
-        public static readonly Color SidebarColor = Color.FromArgb(12, 34, 51);      // #0C2233
-        public static readonly Color AccentColor = Color.FromArgb(93, 202, 165);     // #5DCAA5
-        public static readonly Color MutedTextColor = Color.FromArgb(155, 170, 181);
+        public static readonly Color SidebarColor = Color.FromArgb(105, 68, 142);      // #0C2233 - Btn Colors
+        public static readonly Color AccentColor = Color.FromArgb(93, 202, 165);     // #5DCAA5 - Navlink active color
+        public static readonly Color MutedTextColor = Color.FromArgb(155, 170, 181); // #9BAAB5 - Navlink non-active color
         public static readonly Color ContentBackColor = Color.White;
         public static readonly Color CardBackColor = Color.White;
         public static readonly Color PrimaryTextColor = Color.FromArgb(20, 20, 20);
